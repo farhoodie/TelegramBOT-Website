@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Admin Panel — DoggoBot</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand">
+      <div class="logo"></div><span>DoggoBot Admin</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="login.html" class="btn ghost">Log out</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="grid" style="grid-template-columns:260px 1fr; gap:20px">
+
+      <!-- Sidebar -->
+      <aside class="card" style="padding:16px">
+        <h3>Controls</h3>
+        <div class="grid">
+          <!-- Sync punishments (no-op hook for future sync) -->
+          <form action="/api/sync_punishments" method="post">
+            <button class="btn" type="submit">Sync punishments</button>
+          </form>
+
+          <!-- Generate graph: opens PNG generated from punishments.json -->
+          <a class="btn" href="/api/generate_graph" target="_blank">Generate graph</a>
+
+          <!-- Export JSON: downloads punishments.json from the bot -->
+          <a class="btn" href="/api/export_json">Export JSON</a>
+
+          <!-- Bot settings – later you can link to a real settings page -->
+          <a class="btn ghost" href="#">Bot settings</a>
+        </div>
+
+        <hr style="border:none; border-top:1px solid rgba(255,255,255,.08); margin:16px 0">
+
+        <!-- KPIs (static demo numbers for now) -->
+        <div class="grid">
+          <div class="kpi">
+            <span class="label">Groups</span><span class="value">128</span>
+          </div>
+          <div class="kpi">
+            <span class="label">Actions today</span><span class="value">92</span>
+          </div>
+          <div class="kpi">
+            <span class="label">Warnings 7d</span><span class="value">341</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <section class="grid" style="gap:20px">
+        <div class="card">
+          <h3>Recent actions</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>User</th><th>Action</th><th>Moderator</th><th>Reason</th><th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Static demo rows – you can later replace with live data -->
+              <tr>
+                <td>@alex</td>
+                <td><span class="badge purple">warn</span></td>
+                <td>@mod1</td><td>Spam</td><td>12:31</td>
+              </tr>
+              <tr>
+                <td>@chris</td>
+                <td><span class="badge red">mute</span></td>
+                <td>@mod2</td><td>Off topic</td><td>12:20</td>
+              </tr>
+              <tr>
+                <td>@maria</td>
+                <td><span class="badge green">unmute</span></td>
+                <td>@mod2</td><td>Timeout passed</td><td>11:55</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>Quick actions</h3>
+          <!-- Still a mock – later you can connect this to a Telegram API endpoint -->
+          <form class="form" action="#" method="post">
+            <div class="row" style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+              <div>
+                <label>Target username</label>
+                <input class="input" name="username" placeholder="@user"/>
+              </div>
+              <div>
+                <label>Action</label>
+                <select class="input" name="action">
+                  <option value="warn">Warn</option>
+                  <option value="mute_10m">Mute 10m</option>
+                  <option value="ban">Ban</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <label>Reason</label>
+              <input class="input" name="reason" placeholder="Reason"/>
+            </div>
+            <button class="btn" type="submit">Execute</button>
+            <span class="hint">Later you can connect this form to a Telegram bot endpoint.</span>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    Admin panel demo. API actions are backed by the same punishments log used by the Telegram bot.
+  </footer>
+</body>
+</html>

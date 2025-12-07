@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Register — DoggoBot</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand">
+      <div class="logo"></div><span>DoggoBot</span>
+    </div>
+    <div class="nav-links">
+      <a href="login.html">Login</a>
+    </div>
+  </nav>
+
+  <main class="container" style="max-width:620px">
+    <div class="card">
+      <h2>Create admin account</h2>
+      <p class="muted">
+        This will create an admin user in the DoggoBot database so you can
+        access the moderation panel.
+      </p>
+
+      <!-- Sends registration data to Flask backend -->
+      <form class="form" action="/register" method="post">
+        <div class="row">
+          <label>Name</label>
+          <input class="input" type="text" name="name" required placeholder="Your name"/>
+        </div>
+        <div class="row">
+          <label>Email</label>
+          <input class="input" type="email" name="email" required placeholder="you@example.com"/>
+        </div>
+        <div class="row" style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+          <div>
+            <label>Password</label>
+            <input class="input" type="password" name="password" minlength="8" required placeholder="At least 8 characters"/>
+          </div>
+          <div>
+            <label>Confirm</label>
+            <input class="input" type="password" name="confirm" minlength="8" required placeholder="Repeat password"/>
+          </div>
+        </div>
+        <div class="hint">By continuing you accept the community rules.</div>
+        <button class="btn" type="submit">Create account</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    DoggoBot demo — registration is only for bot admins.
+  </footer>
+</body>
+</html>

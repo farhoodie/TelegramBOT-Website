@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Login — DoggoBot</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .error-box {
+      background: rgba(220, 38, 38, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.45);
+      color: #fca5a5;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand">
+      <div class="logo"></div><span>DoggoBot</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="register.html">Register</a>
+    </div>
+  </nav>
+
+  <main class="container" style="max-width:520px">
+    <div class="card">
+      <h2>Admin login</h2>
+
+      <!-- Error message injected based on URL query (?error=1) -->
+      <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("error") === "1") {
+          document.write('<div class="error-box">Invalid email or password</div>');
+        }
+      </script>
+
+      <form class="form" action="/login" method="post">
+        <div class="row">
+          <label>Email</label>
+          <input
+            class="input"
+            type="email"
+            name="email"
+            required
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div class="row">
+          <label>Password</label>
+          <input
+            class="input"
+            type="password"
+            name="password"
+            required
+            placeholder="••••••••"
+          />
+        </div>
+
+        <button class="btn" type="submit">Log in</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    DoggoBot demo — admin login for bot moderators.
+  </footer>
+</body>
+</html>
